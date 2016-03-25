@@ -18,11 +18,11 @@ class SendPacketThread(threading.Thread):
         threading.Thread.__init__(self)
     def run(self):
         # send off the packet
-
+        time.sleep(CYCLE_TIME + 1)
 
 # Start loop to wait for a trigger
 while True:
-    if GPIO.input(DETECT_PIN):
-        event = SendPacketThread()
-        event.start()
-        time.sleep(CYCLE_TIME)
+     if GPIO.input(DETECT_PIN):
+         event = SendPacketThread('test', time.clock())
+         event.start()
+         time.sleep(CYCLE_TIME)
